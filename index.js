@@ -16,13 +16,13 @@ const displayEntries = () => {
         const emailCell = `<td>${entry.email}</td>`;
         const passwordCell = `<td>${entry.password}</td>`;
         const dobCell = `<td>${entry.dob}</td>`;
-        const acceptTermsCell = `<td>${entry.acceptedTermsAndconditions ? true:false}</td>`;
+        const acceptTermsCell = `<td>${entry.acceptedTermsAndconditions ? true : false}</td>`;
 
         const row = `<tr>${nameCell} ${emailCell} ${passwordCell} ${dobCell} ${acceptTermsCell}</tr>`;
         return row;
     }).join("\n");
 
-    const table = `<table><tr><th>Name</th><th>Email</th><th>Password</th><th>Dob</th><th>Accepted terms?</th></tr>${tableEntries}</table>`;
+    const table = `<table><tr><th>Name</th><th>Email</th><th>Password</th><th>Dob</th><th>Accepted terms? </th></tr>${tableEntries}</table>`;
     let details = document.getElementById("user-entries");
     details.innerHTML = table;
 }
