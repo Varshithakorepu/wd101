@@ -22,11 +22,21 @@ const displayEntries = () => {
         return row;
     }).join("\n");
 
-    const table = `<table><tr><th>Name</th><th>Email</th><th>PassWord</th><th>dob</th><th>accepted Terms</th></tr>${tableEntries}</table>`;
+    const table = `<table><tr><th>Name</th><th>Email</th><th>Password</th><th>Dob</th><th>Accepted Terms</th></tr>${tableEntries}</table>`;
     let details = document.getElementById("user-entries");
     details.innerHTML = table;
 }
+const calculateAge = (dob) => {
+    const today = new Date();
+    const birthDate = new Date(dob);
+    let age = today.getFullYear() - birthDate.getFullYear();
+    const monthDiff = today.getMonth() - birthDate.getMonth();
 
+    if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birthDate.getDate())) {
+        age--;
+    }
+    return age;
+};
 const saveUserForm=(event) =>{
     event.preventDefault();
     const name=document.getElementById("name").value;
@@ -34,6 +44,11 @@ const saveUserForm=(event) =>{
     const password=document.getElementById("password").value;
     const dob=document.getElementById("dob").value;
     const acceptedTermsAndconditions=document.getElementById("acceptTerms").checked;
+    const age = calculateAge(dob);
+    if (age < 18 || age > 55) {
+        alert("Age must be between 18 and 55 years.");
+        return;
+    }
     const entry={
         name,
         email,
